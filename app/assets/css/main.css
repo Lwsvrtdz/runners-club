@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --c-night: #0b0b0c;
+  --c-panel: #141416;
+  --c-deep: #101012;
+  --c-paper: #f3f1f4;
+  --c-ink: #f5f5f7;
+  --c-chrome: #c8c8d0;
+  --c-mute: #7a7a84;
+  --c-magenta: #ff2ec8;
+  --c-grid: rgba(255, 46, 200, 0.06);
+  --c-shadow-magenta: 0 0 24px rgba(255, 46, 200, 0.35);
+}
+
+html.dark {
+  color-scheme: dark;
+  --c-night: #0b0b0c;
+  --c-panel: #141416;
+  --c-deep: #101012;
+  --c-paper: #f3f1f4;
+  --c-ink: #f5f5f7;
+  --c-chrome: #c8c8d0;
+  --c-mute: #7a7a84;
+  --c-magenta: #ff2ec8;
+  --c-grid: rgba(255, 46, 200, 0.06);
+  --c-shadow-magenta: 0 0 24px rgba(255, 46, 200, 0.35);
+}
+
+html.light {
+  color-scheme: light;
+  --c-night: #f1eef3;
+  --c-panel: #ffffff;
+  --c-deep: #e8e4ec;
+  --c-paper: #0b0b0c;
+  --c-ink: #121214;
+  --c-chrome: #3a3a44;
+  --c-mute: #6e6e78;
+  --c-magenta: #e018b0;
+  --c-grid: rgba(18, 18, 20, 0.06);
+  --c-shadow-magenta: 0 0 20px rgba(224, 24, 176, 0.25);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply font-body antialiased;
+    background-color: var(--c-night);
+    color: var(--c-ink);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  ::selection {
+    background-color: var(--c-magenta);
+    color: #0b0b0c;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-magenta);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply font-mono text-[10px] uppercase tracking-technical;
+    color: var(--c-mute);
+  }
+
+  .display-xl {
+    @apply font-display uppercase leading-[0.85] tracking-tightest;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 font-body text-sm font-semibold uppercase tracking-wide transition-all duration-200;
+    background-color: var(--c-magenta);
+    color: #0b0b0c;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    box-shadow: var(--c-shadow-magenta);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border bg-transparent px-5 py-3 font-body text-sm font-semibold uppercase tracking-wide transition-colors duration-200;
+    border-color: color-mix(in srgb, var(--c-ink) 25%, transparent);
+    color: var(--c-ink);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--c-magenta);
+    color: var(--c-magenta);
+  }
+
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 font-body text-sm font-semibold uppercase tracking-wide transition-colors duration-200;
+    background-color: var(--c-paper);
+    color: var(--c-night);
+  }
+
+  .btn-light:hover {
+    background-color: var(--c-magenta);
+    color: #0b0b0c;
+  }
+
+  .editorial-rule {
+    border-top: 1px solid color-mix(in srgb, var(--c-ink) 15%, transparent);
+  }
+
+  .tech-meta {
+    @apply font-mono text-[11px] uppercase tracking-technical;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .text-carbon {
+    color: #0b0b0c;
+  }
+}
